@@ -1,7 +1,5 @@
 package com.qa.TDL.persistance.dto;
 
-import javax.persistence.ManyToOne;
-
 import org.springframework.format.datetime.standard.DateTimeContext;
 
 import com.qa.TDL.persistance.domain.ToDoListDomain;

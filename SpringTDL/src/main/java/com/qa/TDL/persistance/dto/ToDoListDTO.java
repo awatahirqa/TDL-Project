@@ -2,12 +2,6 @@ package com.qa.TDL.persistance.dto;
 
 import java.util.List;
 
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
 import com.qa.TDL.persistance.domain.TasksDomain;
 
 public class ToDoListDTO {
