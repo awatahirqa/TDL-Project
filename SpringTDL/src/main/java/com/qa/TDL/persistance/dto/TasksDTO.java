@@ -1,6 +1,6 @@
 package com.qa.TDL.persistance.dto;
 
-import org.springframework.format.datetime.standard.DateTimeContext;
+
 
 import com.qa.TDL.persistance.domain.ToDoListDomain;
 
@@ -10,7 +10,7 @@ public class TasksDTO {
     private Long TaskId;
 	private String summary;
 	private int priority;
-	private DateTimeContext deadline;
+	private String deadline;
 	private ToDoListDomain myList;
 	private String status;
 	
@@ -19,7 +19,7 @@ public class TasksDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TasksDTO(Long taskId, String summary, int priority, DateTimeContext deadline, ToDoListDomain myList,
+	public TasksDTO(Long taskId, String summary, int priority, String deadline, ToDoListDomain myList,
 			String status) {
 		super();
 		TaskId = taskId;
@@ -47,10 +47,10 @@ public class TasksDTO {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
-	public DateTimeContext getDeadline() {
+	public String getDeadline() {
 		return deadline;
 	}
-	public void setDeadline(DateTimeContext deadline) {
+	public void setDeadline(String deadline) {
 		this.deadline = deadline;
 	}
 	public ToDoListDomain getMyList() {

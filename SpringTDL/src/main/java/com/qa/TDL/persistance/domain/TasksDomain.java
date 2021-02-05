@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.springframework.format.datetime.standard.DateTimeContext;
 
 
 @Entity
@@ -20,7 +19,7 @@ public class TasksDomain {
 	
 	private String summary;
 	private int priority;
-	private DateTimeContext deadline;
+	private String deadline;
 	@ManyToOne
 	private ToDoListDomain myList;
 	private String status;
@@ -28,7 +27,7 @@ public class TasksDomain {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TasksDomain(Long taskId, String summary, int priority, DateTimeContext deadline, ToDoListDomain myList,
+	public TasksDomain(Long taskId, String summary, int priority, String deadline, ToDoListDomain myList,
 			String status) {
 		super();
 		TaskId = taskId;
@@ -56,10 +55,10 @@ public class TasksDomain {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
-	public DateTimeContext getDeadline() {
+	public String getDeadline() {
 		return deadline;
 	}
-	public void setDeadline(DateTimeContext deadline) {
+	public void setDeadline(String deadline) {
 		this.deadline = deadline;
 	}
 	public ToDoListDomain getMyList() {

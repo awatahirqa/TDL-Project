@@ -18,6 +18,7 @@ public class ToDoListDomain {
 	@Id	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long list_id;
+	private String name;
 	@OneToMany(mappedBy = "myList", fetch = FetchType.EAGER)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<TasksDomain> tasklist;
@@ -25,10 +26,11 @@ public class ToDoListDomain {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ToDoListDomain(Long list_id, List<TasksDomain> catlist) {
+	public ToDoListDomain(Long list_id, List<TasksDomain> tasklist,String name) {
 		super();
 		this.list_id = list_id;
-		this.tasklist = catlist;
+		this.tasklist = tasklist;
+		this.name = name;
 	}
 	public Long getList_id() {
 		return list_id;
@@ -39,13 +41,21 @@ public class ToDoListDomain {
 	public List<TasksDomain> getCatlist() {
 		return tasklist;
 	}
-	public void setCatlist(List<TasksDomain> catlist) {
-		this.tasklist = catlist;
+	public void setTasklist(List<TasksDomain> tasklist) {
+		this.tasklist = tasklist;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	@Override
 	public String toString() {
-		return "ToDoListDomain [list_id=" + list_id + ", catlist=" + tasklist + "]";
+		return "ToDoListDomain [list_id=" + list_id + ", name=" + name + ", tasklist=" + tasklist + "]";
 	}
+	
 	
 	
 }

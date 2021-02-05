@@ -13,10 +13,10 @@ public class ToDoListDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ToDoListDTO(Long list_id, List<TasksDomain> catlist) {
+	public ToDoListDTO(Long list_id, List<TasksDomain> tasklist) {
 		super();
 		this.list_id = list_id;
-		this.tasklist = catlist;
+		this.tasklist = tasklist;
 	}
 	public Long getList_id() {
 		return list_id;
@@ -27,12 +27,12 @@ public class ToDoListDTO {
 	public List<TasksDomain> getCatlist() {
 		return tasklist;
 	}
-	public void setCatlist(List<TasksDomain> catlist) {
-		this.tasklist = catlist;
+	public void setTasklist(List<TasksDomain> tasklist) {
+		this.tasklist = tasklist;
 	}
 	@Override
 	public String toString() {
-		return "ToDoListDomain [list_id=" + list_id + ", catlist=" + tasklist + "]";
+		return "ToDoListDomain [list_id=" + list_id + ", tasklist=" + tasklist + "]";
 	}
 	
 }
