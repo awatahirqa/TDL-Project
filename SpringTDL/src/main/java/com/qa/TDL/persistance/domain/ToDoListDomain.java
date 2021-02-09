@@ -38,7 +38,7 @@ public class ToDoListDomain {
 	public void setList_id(Long list_id) {
 		this.list_id = list_id;
 	}
-	public List<TasksDomain> getCatlist() {
+	public List<TasksDomain> gettasklist() {
 		return tasklist;
 	}
 	public void setTasklist(List<TasksDomain> tasklist) {
