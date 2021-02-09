@@ -47,8 +47,8 @@ public class TasksServices {
 
 		// POST
 
-		public TasksDTO create(TasksDomain cat) {
-			return this.mapDTO(this.repo.save(cat));
+		public TasksDTO create(TasksDomain task) {
+			return this.mapDTO(this.repo.save(task));
 
 		}
 		//Put

@@ -51,8 +51,8 @@ public class ToDoListServices {
 
 	// POST
 
-	public ToDoListDTO create(ToDoListDomain house) {
-		return this.mapDTO(this.repo.save(house));
+	public ToDoListDTO create(ToDoListDomain todolist) {
+		return this.mapDTO(this.repo.save(todolist));
 
 	}
 	//Put
