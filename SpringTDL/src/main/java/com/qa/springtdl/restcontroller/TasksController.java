@@ -1,4 +1,4 @@
-package com.qa.TDL.restcontroller;
+package com.qa.springtdl.restcontroller;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.TDL.persistance.domain.TasksDomain;
-import com.qa.TDL.persistance.dto.TasksDTO;
-import com.qa.TDL.services.TasksServices;
+import com.qa.springtdl.persistance.domain.TasksDomain;
+import com.qa.springtdl.persistance.dto.TasksDTO;
+import com.qa.springtdl.services.TasksServices;
 
 @RestController
 @RequestMapping("/Tasks")

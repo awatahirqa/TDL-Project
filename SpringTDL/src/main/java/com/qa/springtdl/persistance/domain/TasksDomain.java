@@ -1,25 +1,33 @@
-package com.qa.TDL.persistance.dto;
+package com.qa.springtdl.persistance.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 
 
-import com.qa.TDL.persistance.domain.ToDoListDomain;
+@Entity
+public class TasksDomain {
+	
 
-public class TasksDTO {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long TaskId;
 	
 	
-    private Long TaskId;
 	private String summary;
 	private int priority;
 	private String deadline;
+	@ManyToOne
 	private ToDoListDomain myList;
 	private String status;
-	
-	
-	public TasksDTO() {
+	public TasksDomain() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TasksDTO(Long taskId, String summary, int priority, String deadline, ToDoListDomain myList,
+	public TasksDomain(Long taskId, String summary, int priority, String deadline, ToDoListDomain myList,
 			String status) {
 		super();
 		TaskId = taskId;
@@ -72,5 +80,6 @@ public class TasksDTO {
 	}
 	
 	
+
 
 }

@@ -1,8 +1,8 @@
-package com.qa.TDL.persistance.dto;
+package com.qa.springtdl.persistance.dto;
 
 import java.util.List;
 
-import com.qa.TDL.persistance.domain.TasksDomain;
+import com.qa.springtdl.persistance.domain.TasksDomain;
 
 public class ToDoListDTO {
 	

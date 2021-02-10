@@ -1,17 +1,17 @@
-package com.qa.SpringTDL.persistance.domain;
+package com.qa.springtdl.persistance.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.qa.TDL.persistance.domain.TasksDomain;
+import com.qa.springtdl.persistance.domain.TasksDomain;
 @SpringBootTest
 public class TaskDomainTest {
 	
-private TasksDomain task;
+private TasksDomain task; 
 
-	
-	@Test
+	 
+	@Test 
 	public void setterGetterTest() {
 		task = new TasksDomain(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
 		

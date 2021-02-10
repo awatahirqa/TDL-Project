@@ -1,4 +1,4 @@
-package com.qa.TDL.services;
+package com.qa.springtdl.services;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,8 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qa.TDL.persistance.domain.TasksDomain;
-import com.qa.TDL.persistance.dto.TasksDTO;
+import com.qa.springtdl.persistance.domain.TasksDomain;
+import com.qa.springtdl.persistance.dto.TasksDTO;
 
 @Service
 public class TasksServices {
@@ -55,9 +55,9 @@ public class TasksServices {
 		
 			public TasksDTO update(Long id,TasksDomain newDetails) {
 				TasksDomain dbEntry = this.repo.findById(id).orElseThrow();
-				newDetails.setTaskId(id);
+				newDetails.setTaskId(id); 
 				TasksDTO result = this.mapDTO(this.repo.save(newDetails));
-				return result;
+				return result; 
 			}
 
 		//Delete

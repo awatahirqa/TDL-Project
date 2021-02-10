@@ -1,11 +1,10 @@
-package com.qa.SpringTDL.persistance.dto;
+package com.qa.springtdl.persistance.dto;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
-import com.qa.TDL.persistance.dto.ToDoListDTO;
+import com.qa.springtdl.persistance.dto.ToDoListDTO;
 
 @SpringBootTest
 public class ToDoListDTOTest {

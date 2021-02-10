@@ -1,11 +1,11 @@
-package com.qa.SpringTDL.persistance.domain;
+package com.qa.springtdl.persistance.domain;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.qa.TDL.persistance.domain.TasksDomain;
-import com.qa.TDL.persistance.domain.ToDoListDomain;
+import com.qa.springtdl.persistance.domain.TasksDomain;
+import com.qa.springtdl.persistance.domain.ToDoListDomain;
 
 @SpringBootTest
 public class ToDoListDomainTest {

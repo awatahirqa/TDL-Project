@@ -1,4 +1,4 @@
-package com.qa.SpringTDL.services;
+package com.qa.springtdl.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,11 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.qa.TDL.persistance.domain.TasksDomain;
-import com.qa.TDL.persistance.dto.TasksDTO;
-import com.qa.TDL.services.TaskRepo;
-import com.qa.TDL.services.TasksServices;
-
+import com.qa.springtdl.persistance.domain.TasksDomain;
+import com.qa.springtdl.persistance.dto.TasksDTO;
+import com.qa.springtdl.services.TaskRepo;
+import com.qa.springtdl.services.TasksServices;
+ 
 @SpringBootTest
 public class TasksServicesTest {
 	@MockBean
@@ -28,15 +28,15 @@ public class TasksServicesTest {
 	private TasksServices service;
 	@Test
 	public void create() {
-		
+		//Resources 
 		TasksDomain testtask = new TasksDomain(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
 		TasksDTO testdto = new TasksDTO(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
-		
+		//Rules
 		Mockito.when(this.mockedRepo.save(Mockito.any(TasksDomain.class))).thenReturn(testtask);
 		Mockito.when(this.mockedMapper.map(testtask, TasksDTO.class)).thenReturn(testdto);
-		
+		//Action
 		TasksDTO result = this.service.create(testtask);
-		
+		//Assertions
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals(result,testdto);
 		Assertions.assertEquals(result,testdto);

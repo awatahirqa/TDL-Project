@@ -1,4 +1,4 @@
-package com.qa.TDL.config;
+package com.qa.springtdl.config;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ public class AppConfig {
 	public ModelMapper getMapper() {
 		return new ModelMapper();
 	}
-
+ 
 
 
 }

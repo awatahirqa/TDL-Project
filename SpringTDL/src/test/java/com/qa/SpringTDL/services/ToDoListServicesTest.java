@@ -1,4 +1,4 @@
-package com.qa.SpringTDL.services;
+package com.qa.springtdl.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import com.qa.TDL.persistance.domain.ToDoListDomain;
-import com.qa.TDL.persistance.dto.ToDoListDTO;
-import com.qa.TDL.services.ToDoListRepo;
-import com.qa.TDL.services.ToDoListServices;
+import com.qa.springtdl.persistance.domain.ToDoListDomain;
+import com.qa.springtdl.persistance.dto.ToDoListDTO;
+import com.qa.springtdl.services.ToDoListRepo;
+import com.qa.springtdl.services.ToDoListServices;
 
 @SpringBootTest
 public class ToDoListServicesTest {
@@ -41,8 +41,8 @@ public class ToDoListServicesTest {
 		
 		Assertions.assertNotNull(result);
 		Assertions.assertEquals(result,testdto);
-		Assertions.assertTrue(result).usingRecursiveComparison()
-				.isEqualTo(testdto);
+		// Assertions.assertTrue(result).usingRecursiveComparison()
+			//	.isEqualTo(testdto); 
 		
 		Mockito.verify(this.mockedRepo, Mockito.times(1)).save(Mockito.any(ToDoListDomain.class));
 		Mockito.verify(this.mockedMapper, Mockito.times(1)).map(testtodolist, ToDoListDTO.class);
@@ -59,7 +59,7 @@ public class ToDoListServicesTest {
 		Mockito.verify(this.mockedRepo, Mockito.times(1)).existsById(id);
 	}
 	
-	@Test
+	@Test 
 	public void readById() {
 		ToDoListDomain testtodolist = new ToDoListDomain(1L, null, "Pokemon");
 		ToDoListDTO testdto = this.mockedMapper.map(testtodolist, ToDoListDTO.class);

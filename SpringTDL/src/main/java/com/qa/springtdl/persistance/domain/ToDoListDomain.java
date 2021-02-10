@@ -1,4 +1,4 @@
-package com.qa.TDL.persistance.domain;
+package com.qa.springtdl.persistance.domain;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 public class ToDoListDomain {
-	@Id	
+	@Id	 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long list_id;
 	private String name;

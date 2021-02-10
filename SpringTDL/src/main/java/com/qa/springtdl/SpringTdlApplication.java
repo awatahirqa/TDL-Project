@@ -1,4 +1,4 @@
-package com.qa.TDL;
+package com.qa.springtdl;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,6 +9,7 @@ public class SpringTdlApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringTdlApplication.class, args);
-	}
+	} 
 
-}
+} 
+ 

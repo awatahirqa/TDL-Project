@@ -1,4 +1,4 @@
-package com.qa.TDL.utilities;
+package com.qa.springtdl.utilities;
 
 import java.beans.PropertyDescriptor;
 import java.util.HashSet;

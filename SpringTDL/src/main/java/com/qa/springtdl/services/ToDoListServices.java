@@ -1,4 +1,4 @@
-package com.qa.TDL.services;
+package com.qa.springtdl.services;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,8 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qa.TDL.persistance.domain.ToDoListDomain;
-import com.qa.TDL.persistance.dto.ToDoListDTO;
+import com.qa.springtdl.persistance.domain.ToDoListDomain;
+import com.qa.springtdl.persistance.dto.ToDoListDTO;
 
 
 
@@ -59,7 +59,7 @@ public class ToDoListServices {
 	
 		public ToDoListDTO update(Long id,ToDoListDomain newDetails) {
 			ToDoListDomain dbEntry = this.repo.findById(id).orElseThrow();
-			newDetails.setList_id(id);
+			newDetails.setList_id(id); 
 			ToDoListDTO result = this.mapDTO(this.repo.save(newDetails));
 			return result;
 		}

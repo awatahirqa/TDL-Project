@@ -1,4 +1,4 @@
-package com.qa.TDL.restcontroller;
+package com.qa.springtdl.restcontroller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.qa.TDL.persistance.domain.ToDoListDomain;
-import com.qa.TDL.persistance.dto.ToDoListDTO;
-import com.qa.TDL.services.ToDoListServices;
+
+import com.qa.springtdl.persistance.domain.ToDoListDomain;
+import com.qa.springtdl.persistance.dto.ToDoListDTO;
+import com.qa.springtdl.services.ToDoListServices;
 
 @RestController
 @RequestMapping("/ToDoList")
