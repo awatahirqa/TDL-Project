@@ -47,6 +47,7 @@ public class TasksServicesTest {
 	
 	@Test
 	public void delete() {
+		TasksDomain testtask = new TasksDomain(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
 		Long id = 1l;
 		
 		Mockito.when(this.mockedRepo.existsById(id)).thenReturn(false);
