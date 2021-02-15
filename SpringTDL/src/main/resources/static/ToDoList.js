@@ -11,11 +11,11 @@ const ListNameUpdate = document.querySelector("#ListNameUpdate");
 const ListIdDelete = document.querySelector("#ListNameDelete");
 
 const createToDoList = () => {
-    const ListName = ListName.value;
+    const ListNameValue = ListName.value;
 
     let data = {
         "tasklist": [null],
-        "name": ListName
+        "name": ListNameValue
     }
 
     fetch("http://localhost:8080/ToDoList/create", {
@@ -42,9 +42,9 @@ const readAllToDoLists = () => {
 }
 
 const readByListName = () => {
-    const ListNameRead = ListNameRead.value;
+    const ListNameReadValue = ListNameRead.value;
 
-    fetch(`http://localhost:8901/band/read/${ListNameRead}`)
+    fetch(`http://localhost:8080/ToDoList/read/${ListNameReadValue}`)
         .then(response => response.json())
         .then(info => console.log(info))
         .catch(err => console.error(`error ${err}`));
@@ -52,16 +52,16 @@ const readByListName = () => {
 
 
 const updateList = () => {
-    const ListIdUpdate = ListIdUpdate.value;
-    const ListNameUpdate = ListNameUpdate.value;
+    const ListIdUpdateValue = ListIdUpdate.value;
+    const ListNameUpdateValue = ListNameUpdate.value;
 
     let data = {
         
         "tasklist": null,
-        "name": ListNameUpdate
+        "name": ListNameUpdateValue
     }
 
-    fetch(`http://localhost:8080/ToDoList/replace/${ListIdUpdate}`, {
+    fetch(`http://localhost:8080/ToDoList/replace/${ListIdUpdateValue}`, {
         method: "PUT",
         body: JSON.stringify(data),
         headers: {
@@ -74,9 +74,9 @@ const updateList = () => {
 }
 
 const deleteListById = () => {
-    const ListIdDelete = ListIdDelete.value;
+    const ListIdDeleteValue = ListIdDelete.value;
 
-    fetch(`http://localhost:8080/ToDoList/delete/${ListIdDelete}`, {
+    fetch(`http://localhost:8080/ToDoList/delete/${ListIdDeleteValue}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"

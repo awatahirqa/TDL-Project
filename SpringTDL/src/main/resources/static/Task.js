@@ -54,9 +54,9 @@ const tasksreadAll = () => {
 }
 
 const tasksreadOne = (id) => {
-    const TaskIdRead = TaskIdRead.value;
+    const TaskIdReadValue = TaskIdRead.value;
 
-    fetch(`http://localhost:8901/musician/read/${TaskIdRead}`)
+    fetch(`http://localhost:8080/Tasks/read/${TaskIdReadValue}`)
     .then((response) => {
         // check that the response is OK (i.e. 200)
         if(response.status !== 200){
@@ -75,7 +75,7 @@ const tasksreadOne = (id) => {
 }
 
 const updateTask = () => {
-const   TaskIdUpdate = TaskIdUpdate.value;
+const   TaskIdUpdateValue = TaskIdUpdate.value;
 const summaryValue = Summary_update.value; 
 const priorityValue = priority_update.value;
 const deadlineValue = deadline_udate.value;
@@ -91,7 +91,7 @@ const statusValue = status_update.value;
         "status" :  statusValue
     }
  
-    fetch(`http://localhost:8080/Tasks/replace/${TaskIdUpdate}`, {
+    fetch(`http://localhost:8080/Tasks/replace/${TaskIdUpdateValue}`, {
         method: "PUT", 
         body: JSON.stringify(data),
         headers:{
@@ -104,9 +104,9 @@ const statusValue = status_update.value;
 }
 
 const deleteTask = () => {
-    const TaskIdDelete = TaskIdDelete.value;
+    const TaskIdDeleteValue = TaskIdDelete.value;
  
-    fetch(`http://localhost:8080/Tasks/replace/${TaskIdDelete}`, {
+    fetch(`http://localhost:8080/Tasks/delete/${TaskIdDeleteValue}`, {
         method: "DELETE", 
         headers:{
             "Content-Type":"application/json"
