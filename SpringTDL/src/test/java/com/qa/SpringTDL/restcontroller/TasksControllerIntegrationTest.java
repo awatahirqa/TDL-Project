@@ -67,7 +67,7 @@ public class TasksControllerIntegrationTest {
 		
 		TasksDTO expectedResultA = new TasksDTO(1L, "need to pick up veg",3,"07/03/21","Ongoing");
 		TasksDTO expectedResultB = new TasksDTO(2L, "Got to catch them all",1,"11/03/21","Ongoing");
-		TasksDTO expectedResultC = new TasksDTO(3L, "'need to pick up meat",2,"07/03/21","Ongoing");
+		TasksDTO expectedResultC = new TasksDTO(3L, "need to pick up meat",2,"07/03/21","Ongoing");
 		
 		List<TasksDTO>TasksDTOresultList = new ArrayList<TasksDTO>();
 		
@@ -75,7 +75,7 @@ public class TasksControllerIntegrationTest {
 		TasksDTOresultList.add(expectedResultB);
 		TasksDTOresultList.add(expectedResultC);
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "http://localhost:8080/Tasks/readAll").accept(org.springframework.http.MediaType.APPLICATION_JSON);
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "/Tasks/readAll").accept(org.springframework.http.MediaType.APPLICATION_JSON);
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(TasksDTOresultList));
@@ -88,9 +88,9 @@ public class TasksControllerIntegrationTest {
 	@Test
 	public void readOne() throws Exception{
 		
-		TasksDTO expectedResult1 = new TasksDTO(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
+		TasksDTO expectedResult1 = new TasksDTO(1L, "need to pick up veg",3,"07/03/21","Ongoing");
 		//set it up
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "http://localhost:8080/Tasks/read/" + ID);
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "/Tasks/read/" + ID);
 		//set the expectations
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResult1));
@@ -108,10 +108,10 @@ public class TasksControllerIntegrationTest {
 		TasksDomain contentBody = new TasksDomain(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
 		TasksDTO expectedResult = mapToDTO(contentBody);
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "http://localhost:8080/Tasks/update/" + ID)
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "/Tasks/replace/" + ID)
 				.contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
 		
-		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
+		ResultMatcher matchStatus = MockMvcResultMatchers.status().isAccepted();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResult));
 		
 		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
@@ -120,7 +120,7 @@ public class TasksControllerIntegrationTest {
 	@Test
 	public void delete() throws Exception{
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "http://localhost:8080/Tasks/delete/" + ID);
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "/Tasks/delete/" + ID);
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isNoContent();
 		

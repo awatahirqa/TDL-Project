@@ -29,8 +29,8 @@ public class TasksServicesTest {
 	@Test
 	public void create() {
 		//Resources 
-		TasksDomain testtask = new TasksDomain(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
-		TasksDTO testdto = new TasksDTO(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
+		TasksDomain testtask = new TasksDomain(1L, "Simple task to test my domain", 2, "01-01-2021", "Ongoing");
+		TasksDTO testdto = new TasksDTO(1L, "Simple task to test my domain", 2, "01-01-2021", "Ongoing");
 		//Rules
 		Mockito.when(this.mockedRepo.save(Mockito.any(TasksDomain.class))).thenReturn(testtask);
 		Mockito.when(this.mockedMapper.map(testtask, TasksDTO.class)).thenReturn(testdto);
@@ -98,7 +98,7 @@ public class TasksServicesTest {
 	public void update() {
 		TasksDomain testtaskA = new TasksDomain(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
 		TasksDomain testtaskB = new TasksDomain(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
-		TasksDTO testdto = new TasksDTO(1L, testtaskB.getSummary(), testtaskB.getPriority(), testtaskB.getDeadline(), null, testtaskB.getStatus());
+		TasksDTO testdto = new TasksDTO(1L, testtaskB.getSummary(), testtaskB.getPriority(), testtaskB.getDeadline(), testtaskB.getStatus());
 		
 		Mockito.when(this.mockedRepo.findById(1L)).thenReturn(Optional.of(testtaskA));
 		Mockito.when(this.mockedRepo.save(testtaskB)).thenReturn(testtaskB);
