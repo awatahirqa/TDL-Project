@@ -11,7 +11,6 @@ public class TasksDTO {
 	private String summary;
 	private int priority;
 	private String deadline;
-	private ToDoListDomain myList;
 	private String status;
 	
 	
@@ -19,14 +18,14 @@ public class TasksDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TasksDTO(Long taskId, String summary, int priority, String deadline, ToDoListDomain myList,
-			String status) {
+	
+	
+	public TasksDTO(Long taskId, String summary, int priority, String deadline, String status) {
 		super();
 		TaskId = taskId;
 		this.summary = summary;
 		this.priority = priority;
 		this.deadline = deadline;
-		this.myList = myList;
 		this.status = status;
 	}
 	public Long getTaskId() {
@@ -53,22 +52,19 @@ public class TasksDTO {
 	public void setDeadline(String deadline) {
 		this.deadline = deadline;
 	}
-	public ToDoListDomain getMyList() {
-		return myList;
-	}
-	public void setMyList(ToDoListDomain myList) {
-		this.myList = myList;
-	}
+	
 	public String getStatus() {
 		return status;
 	}
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+
 	@Override
 	public String toString() {
-		return "Tasksdomain [TaskId=" + TaskId + ", summary=" + summary + ", priority=" + priority + ", deadline="
-				+ deadline + ", myList=" + myList + ", status=" + status + "]";
+		return "TasksDTO [TaskId=" + TaskId + ", summary=" + summary + ", priority=" + priority + ", deadline="
+				+ deadline + ", status=" + status + "]";
 	}
 	
 	

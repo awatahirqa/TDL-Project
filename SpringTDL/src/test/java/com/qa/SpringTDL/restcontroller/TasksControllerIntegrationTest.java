@@ -47,10 +47,10 @@ public class TasksControllerIntegrationTest {
 	@Test
 	public void create() throws Exception{
 		
-		TasksDomain contentBody = new TasksDomain(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
+		TasksDomain contentBody = new TasksDomain(1L, "need to pick up veg",3,"07/03/21",null,"Ongoing");
 		TasksDTO expectedResult = mapToDTO(contentBody);
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, "http://localhost:8080/task/create")
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, "http://localhost:8080/Tasks/create")
 				.contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isCreated();
@@ -65,9 +65,9 @@ public class TasksControllerIntegrationTest {
 	public void readAll() throws Exception{
 		
 		
-		TasksDTO expectedResultA = new TasksDTO(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
-		TasksDTO expectedResultB = new TasksDTO(2L, "Got to catch them all", 3, "02-02-2021", null, "Ongoing");
-		TasksDTO expectedResultC = new TasksDTO(3L, "Assemble team to combat ineffeciency", 1, "03-03-2021", null, "Ongoing");
+		TasksDTO expectedResultA = new TasksDTO(1L, "need to pick up veg",3,"07/03/21","Ongoing");
+		TasksDTO expectedResultB = new TasksDTO(2L, "Got to catch them all",1,"11/03/21","Ongoing");
+		TasksDTO expectedResultC = new TasksDTO(3L, "'need to pick up meat",2,"07/03/21","Ongoing");
 		
 		List<TasksDTO>TasksDTOresultList = new ArrayList<TasksDTO>();
 		
@@ -75,7 +75,7 @@ public class TasksControllerIntegrationTest {
 		TasksDTOresultList.add(expectedResultB);
 		TasksDTOresultList.add(expectedResultC);
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "http://localhost:8080/tasks/readAll").accept(org.springframework.http.MediaType.APPLICATION_JSON);
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "http://localhost:8080/Tasks/readAll").accept(org.springframework.http.MediaType.APPLICATION_JSON);
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(TasksDTOresultList));
@@ -90,7 +90,7 @@ public class TasksControllerIntegrationTest {
 		
 		TasksDTO expectedResult1 = new TasksDTO(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
 		//set it up
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "http://localhost:8080/tasks/read/" + ID);
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "http://localhost:8080/Tasks/read/" + ID);
 		//set the expectations
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResult1));
@@ -108,7 +108,7 @@ public class TasksControllerIntegrationTest {
 		TasksDomain contentBody = new TasksDomain(1L, "Simple task to test my domain", 2, "01-01-2021", null, "Ongoing");
 		TasksDTO expectedResult = mapToDTO(contentBody);
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "http://localhost:8080/tasks/update/" + ID)
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "http://localhost:8080/Tasks/update/" + ID)
 				.contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
@@ -120,7 +120,7 @@ public class TasksControllerIntegrationTest {
 	@Test
 	public void delete() throws Exception{
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "http://localhost:8080/tasks/delete/" + ID);
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "http://localhost:8080/Tasks/delete/" + ID);
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isNoContent();
 		

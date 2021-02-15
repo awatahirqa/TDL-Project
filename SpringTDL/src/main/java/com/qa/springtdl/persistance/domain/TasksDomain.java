@@ -37,6 +37,15 @@ public class TasksDomain {
 		this.myList = myList;
 		this.status = status;
 	}
+	
+	public TasksDomain(Long taskId, String summary, int priority, String deadline, String status) {
+		super();
+		TaskId = taskId;
+		this.summary = summary;
+		this.priority = priority;
+		this.deadline = deadline;
+		this.status = status;
+	}
 	public Long getTaskId() {
 		return TaskId;
 	}

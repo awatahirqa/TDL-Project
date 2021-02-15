@@ -9,18 +9,25 @@ public class ToDoListDTO {
 	
 	private Long list_id;
 	private String name;
-	private List<TasksDomain> tasklist;
+	private List<TasksDTO> tasklist;
 	public ToDoListDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ToDoListDTO(Long list_id, String name, List<TasksDomain> tasklist) {
+	public ToDoListDTO(Long list_id, String name, List<TasksDTO> tasklist) {
 		super();
 		this.list_id = list_id;
 		this.name = name;
 		this.tasklist = tasklist;
 	}
+	public ToDoListDTO(Long list_id, String name) {
+		super();
+		this.list_id = list_id;
+		this.name = name;
+		
+	}
+	
 
 	public Long getList_id() {
 		return list_id;
@@ -37,10 +44,10 @@ public class ToDoListDTO {
 		this.name = name;
 	}
 
-	public List<TasksDomain> gettasklist() {
+	public List<TasksDTO> gettasklist() {
 		return tasklist;
 	}
-	public void setTasklist(List<TasksDomain> tasklist) {
+	public void setTasklist(List<TasksDTO> tasklist) {
 		this.tasklist = tasklist;
 	}
 

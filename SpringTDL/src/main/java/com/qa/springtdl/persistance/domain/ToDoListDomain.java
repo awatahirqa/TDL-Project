@@ -32,6 +32,12 @@ public class ToDoListDomain {
 		this.tasklist = tasklist;
 		this.name = name;
 	}
+	
+	public ToDoListDomain(Long list_id, String name) {
+		super();
+		this.list_id = list_id;
+		this.name = name;
+	}
 	public Long getList_id() {
 		return list_id;
 	}

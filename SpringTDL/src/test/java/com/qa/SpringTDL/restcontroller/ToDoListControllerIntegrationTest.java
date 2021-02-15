@@ -2,6 +2,7 @@ package com.qa.springtdl.restcontroller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -21,6 +22,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.qa.springtdl.persistance.domain.TasksDomain;
 import com.qa.springtdl.persistance.domain.ToDoListDomain;
 import com.qa.springtdl.persistance.dto.ToDoListDTO;
 
@@ -46,18 +48,21 @@ public class ToDoListControllerIntegrationTest {
 	@Test
 	public void readAll() throws Exception{
 		
-		ToDoListDTO expectedResultA = new ToDoListDTO(1L, "Test List",null);
-		ToDoListDTO expectedResultB = new ToDoListDTO(2L, "Pokemon List", null);
-		
-		List<ToDoListDTO>ToDoListDTOList = new ArrayList<ToDoListDTO>();
-		
+		ToDoListDomain expectedResultA = new ToDoListDomain(1L, "Food");
+		TasksDomain expectedtaskA = new TasksDomain (1L,"need to pick up veg",3,"07/03/21","Ongoing");
+		TasksDomain expectedtaskB  = new TasksDomain  (2L,"Got to catch them all",1,"11/03/21","Ongoing");
+		TasksDomain expectedtaskC   = new TasksDomain  (3l,"need to pick up meat",2,"07/03/21","Ongoing");
+		List<TasksDomain> Tasklist = List.of(expectedtaskA,expectedtaskB,expectedtaskC);
+				
+		List<ToDoListDomain>ToDoListDTOList = new ArrayList<>();
+		expectedResultA.setTasklist(Tasklist);
 		ToDoListDTOList.add(expectedResultA);
-		ToDoListDTOList.add(expectedResultB);
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET, "http://localhost:8080/todolist/readAll").accept(MediaType.APPLICATION_JSON);
+		
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET ,"/ToDoList/readAll").accept(MediaType.APPLICATION_JSON);
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
-		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(ToDoListDTOList));
+		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(ToDoListDTOList.stream().map(this::mapToDTO).collect(Collectors.toList())));
 		
 		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 		
@@ -66,10 +71,10 @@ public class ToDoListControllerIntegrationTest {
 	@Test
 	public void create() throws Exception{ 
 		
-		ToDoListDomain contentBody = new ToDoListDomain(1L,null, "Test List");
+		ToDoListDomain contentBody = new ToDoListDomain(2L,null, "Test");
 		ToDoListDTO expectedResult = mapToDTO(contentBody);
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, "http://localhost:8080/todolist/create")
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.POST, "/ToDoList/create")
 				.contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isCreated();
@@ -81,11 +86,11 @@ public class ToDoListControllerIntegrationTest {
 		@Test
 		public void updateToDoList() throws Exception {
 			// resources
-			ToDoListDomain contentBody = new ToDoListDomain(1L,null, "Test List");
+			ToDoListDomain contentBody = new ToDoListDomain(1L,null, "Food");
 			ToDoListDTO expectedResult = this.mapToDTO(contentBody);
 			
 			// set up request
-			MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "http://localhost:8080/todolist/update"+ ID)
+			MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.PUT, "/ToDoList/replace/"+ 1L)
 					.contentType(MediaType.APPLICATION_JSON).content(jsonifier.writeValueAsString(contentBody)).accept(MediaType.APPLICATION_JSON);
 			
 			// set up expectations
@@ -99,7 +104,7 @@ public class ToDoListControllerIntegrationTest {
 	@Test
 	public void delete() throws Exception{
 		
-		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "http://localhost:8080/todolist/delete/" + ID);
+		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "/ToDoList/delete/" + 1);
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isNoContent();
 		

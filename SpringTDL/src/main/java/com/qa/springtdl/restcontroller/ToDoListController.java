@@ -61,7 +61,7 @@ public class ToDoListController {
 
 	//DELETE
 		@DeleteMapping("/delete/{id}")
-		public ResponseEntity<Object> delete(@PathVariable("id") Long id) {
+		public ResponseEntity<ToDoListDTO> delete(@PathVariable("id") Long id) {
 			return this.service.delete(id)?
 					new ResponseEntity<>(HttpStatus.NO_CONTENT):
 						new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
