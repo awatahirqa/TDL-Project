@@ -84,7 +84,7 @@ Using Selenium we test the front end of the website - there will also extent rep
 
 
 ## Authors
-
+*[Waleed Tahir](https://github.com/awatahirqa)
 
 ## Acknowledgements  
 *Massive thank you to my trainers who have supported me every step of the processs
