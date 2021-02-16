@@ -40,7 +40,7 @@ public class TasksControllerIntegrationTest {
 	private ObjectMapper jsonifier; 
 	private TasksDTO mapToDTO(TasksDomain model) {
 		return this.mapper.map(model, TasksDTO.class);
-	}
+	} 
 
 	private final Long ID = 1L;
 	

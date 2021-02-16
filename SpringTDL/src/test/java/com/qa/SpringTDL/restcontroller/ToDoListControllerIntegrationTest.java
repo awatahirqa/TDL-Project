@@ -101,7 +101,7 @@ public class ToDoListControllerIntegrationTest {
 			// perform
 			this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 		}
-	@Test
+	@Test 
 	public void delete() throws Exception{
 		
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.DELETE, "/ToDoList/delete/" + 1);

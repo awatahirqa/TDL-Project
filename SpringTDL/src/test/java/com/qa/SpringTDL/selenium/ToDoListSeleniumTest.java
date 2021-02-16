@@ -1,5 +1,7 @@
 package com.qa.springtdl.selenium;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -10,6 +12,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.jdbc.Sql;
@@ -70,6 +74,12 @@ public class ToDoListSeleniumTest {
 		//execute create
 		targ.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/button"));
 		targ.click();
+		targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"createConfirmed\"]/p")));
+		
+		//targ = driver.findElement(By.xpath("//*[@id=\"createConfirmed\"]/p"));
+		String result = targ.getText();
+		String expected = "your List pokemon was created";
+		assertEquals(expected,result);
 }
 	@Test
 	public void readallTodolist() throws InterruptedException{
@@ -77,13 +87,20 @@ public class ToDoListSeleniumTest {
 		//Spin up URL 
 		driver.get(URL);
 		//Input Vales
-		targ.findElement(By.name("ListCreate"));
+		targ.findElement(By.id("ListName"));
 		targ.sendKeys("selenium test case");
 		//execute create
 		targ.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/button"));
 		targ.click();
 		//execute read all
 		targ.findElement(By.xpath("/html/body/div[2]/div/div/button"));
+		targ.click();
+targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"readall\"]/p")));
+		
+		//targ = driver.findElement(By.xpath("//*[@id="readall"]/p"));
+		String result = targ.getText();
+		String expected = "undefined | selenium test case";
+		assertEquals(expected,result);
 }
 	@Test
 	public void readbyidTodolist() {
@@ -101,6 +118,13 @@ public class ToDoListSeleniumTest {
 		targ.sendKeys("1");
 		//execute read by id
 		targ.findElement(By.xpath("/html/body/div[3]/div[2]/div/button"));
+		targ.click();
+targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"readByID\"]/p")));
+		
+		//targ = driver.findElement(By.xpath("//*[@id="readByID"]/p"));
+		String result = targ.getText();
+		String expected = "{\"list_id\":21,\"name\":\"selenium test case\",\"tasklist\":[]}";
+		assertEquals(expected,result);
 		
 }
 	@Test
@@ -108,7 +132,7 @@ public class ToDoListSeleniumTest {
 		test = report.startTest("update Todolist Selenium Test");
 		//Spin up URL 
 		driver.get(URL);
-		//Input Vales
+		//Input Vales 
 		targ.findElement(By.name("ListCreate"));
 		targ.sendKeys("selenium test case");
 		//execute create
@@ -119,9 +143,42 @@ public class ToDoListSeleniumTest {
 		targ.sendKeys("1");
 		//input new name
 		targ.findElement(By.id("ListNameUpdate"));
-		targ.sendKeys("1");
+		targ.sendKeys("update test");
 		//execute update
 		targ.findElement(By.xpath("/html/body/div[5]/div[2]/div/button"));
+		targ.click();
+targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"updateConfirmed\"]/p")));
+		
+		//targ = driver.findElement(By.xpath("//*[@id="updateConfirmed"]/p"));
+		String result = targ.getText();
+		String expected = "your todolist 1 was updated)";
+		assertEquals(expected,result);
+		
+}
+	@Test
+	public void deleteTodolist()throws InterruptedException {
+		test = report.startTest("delete Todolist Selenium Test");
+		//Spin up URL 
+		driver.get(URL);
+		//Input Vales 
+		targ.findElement(By.name("ListCreate"));
+		targ.sendKeys("selenium test case");
+		//execute create
+		targ.findElement(By.xpath("/html/body/div[1]/div/div/div[2]/div/button"));
+		targ.click();
+		//input id for delete
+		targ.findElement(By.id("ListNameDelete"));
+		targ.sendKeys("1");
+		//execute delete
+		targ.findElement(By.xpath("/html/body/div[5]/div[2]/div/button"));
+		targ.click();
+		
+targ = new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"DeleteConfirmed\"]/p")));
+		
+		//targ = driver.findElement(By.xpath("//*[@id="DeleteConfirmed"]/p"));
+		String result = targ.getText();
+		String expected = "your List with id your List with id 2 was deleted";
+		assertEquals(expected,result);
 		
 }
 }

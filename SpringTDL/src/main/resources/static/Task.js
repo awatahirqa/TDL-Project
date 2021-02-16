@@ -13,6 +13,54 @@ const deadline_udate = document.querySelector("#DeadlineUpdate");
 const mylist_update = document.querySelector("#MyListIDUpdate");
 const status_update = document.querySelector("#StatusUpdate");
 const TaskIdDelete = document.querySelector("#TaskIdDelete");
+const Createconfirm = document.querySelector('#createConfirmed');
+const readById1 = document.querySelector('#readbyid');
+const Updateconfirm = document.querySelector('#updateConfirmed');
+const readbyid = document.querySelector('#readByID');
+const taskprint = document.querySelector('#readall')
+const Deleteconfirm = document.querySelector('#DeleteConfirmed');
+
+const printReadToScreen = (read) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${read}`);
+	user.appendChild(text);
+	readbyid.appendChild(user);
+
+}
+
+const printTaskToScreen = (tasks) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${tasks}`);
+	user.appendChild(text);
+	taskprint.appendChild(user);
+
+}
+
+const printDeleteToScreen = (deleted) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`your task with id ${deleted} was deleted`);
+	user.appendChild(text);
+	Deleteconfirm.appendChild(user);
+}
+
+
+
+const printCreateConfirm = (created) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${created}`);
+	user.appendChild(text);
+	Createconfirm.appendChild(user);
+
+
+}
+const printUpdateConfirm = (updated) => {
+	let user = document.createElement("p");
+	let text = document.createTextNode(`${updated}`);
+	user.appendChild(text);
+	Updateconfirm.appendChild(user);
+
+
+}
 
 const createTask = () => {
     const summaryValue = summary.value; 
@@ -39,6 +87,7 @@ const createTask = () => {
     })
     .then(response => response.json())
     .then(info => console.log(info))
+    .then(printCreateConfirm (`your task ${summaryValue} was created`))
     .catch(err => console.error(`Something went wrong! ${err}`));
 }
 
@@ -48,6 +97,7 @@ const tasksreadAll = () => {
     .then(info => {
         for (let Task of info) {
             console.log(Task);
+            printTaskToScreen(Task.Id + " | " + Task.summary + " | " + Task.status);
         }
     })
     .catch(err => console.error(`error ${err}`));
@@ -67,6 +117,9 @@ const tasksreadOne = (id) => {
             //json-ify it (which returns a promise)
             response.json().then((infofromserver) =>{
                 console.log(infofromserver);
+                let myJSON = JSON.stringify(infofromserver)
+					console.table(infofromserver);
+					printReadToScreen(myJSON);
             })
         }
     }).catch((err) => {
@@ -100,6 +153,7 @@ const statusValue = status_update.value;
     })
     .then(response => response.json())
     .then(info => console.log(info))
+    .then(printUpdateConfirm(`your task ${TaskIdUpdateValue} was updated)`))
     .catch(err => console.error(`Something went wrong! ${err}`));
 }
 
@@ -114,5 +168,6 @@ const deleteTask = () => {
     })
     .then(response => response.json())
     .then(info => console.log(info))
+    .then(printDeleteToScreen(`your task with id ${TaskIdDeleteValue} `))
     .catch(err => console.error(`Something went wrong! ${err}`));
 }
